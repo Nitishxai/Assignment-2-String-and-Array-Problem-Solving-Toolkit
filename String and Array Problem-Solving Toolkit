@@ -1,0 +1,155 @@
+// Reverse a String Without Using reverse()
+function reverseString(str) {
+    let reversed = "";
+
+    for (let i = str.length - 1; i >= 0; i--) {
+        reversed += str[i];
+    }
+
+    return reversed;
+}
+
+// Check Whether a String Is a Palindrome
+function isPalindrome(str) {
+    let reversed = reverseString(str);
+    return str === reversed;
+}
+
+// Count Vowels and Consonants
+function countVowelsAndConsonants(str) {
+    let vowels = 0;
+    let consonants = 0;
+    let text = str.toLowerCase();
+
+    for (let char of text) {
+        if (char >= "a" && char <= "z") {
+            if ("aeiou".includes(char)) {
+                vowels++;
+            } else {
+                consonants++;
+            }
+        }
+    }
+
+    return { vowels, consonants };
+}
+
+// Find the Second-Largest Distinct Number
+function secondLargest(arr) {
+    let largest = -Infinity;
+    let second = -Infinity;
+
+    for (let num of arr) {
+        if (num > largest) {
+            second = largest;
+            largest = num;
+        } else if (num > second && num < largest) {
+            second = num;
+        }
+    }
+
+    return second === -Infinity ? null : second;
+}
+
+// Remove Duplicate Elements Without Using Set
+function removeDuplicates(arr) {
+    let result = [];
+
+    for (let item of arr) {
+        if (!result.includes(item)) {
+            result.push(item);
+        }
+    }
+
+    return result;
+}
+
+// Find the Sum of All Even Numbers
+function sumEvenNumbers(arr) {
+    let sum = 0;
+
+    for (let num of arr) {
+        if (num % 2 === 0) {
+            sum += num;
+        }
+    }
+
+    return sum;
+}
+
+// Find the Frequency of an Element
+function frequency(arr, element) {
+    let count = 0;
+
+    for (let item of arr) {
+        if (item === element) {
+            count++;
+        }
+    }
+
+    return count;
+}
+
+// Check Whether Two Strings Are Anagrams
+function areAnagrams(str1, str2) {
+    let text1 = str1.toLowerCase().replace(/\s/g, "");
+    let text2 = str2.toLowerCase().replace(/\s/g, "");
+
+    if (text1.length !== text2.length) {
+        return false;
+    }
+
+    let sorted1 = text1.split("").sort().join("");
+    let sorted2 = text2.split("").sort().join("");
+
+    return sorted1 === sorted2;
+}
+
+// Move All Zeros to the End
+function moveZeros(arr) {
+    let result = [];
+    let zeroCount = 0;
+
+    for (let num of arr) {
+        if (num === 0) {
+            zeroCount++;
+        } else {
+            result.push(num);
+        }
+    }
+
+    while (zeroCount > 0) {
+        result.push(0);
+        zeroCount--;
+    }
+
+    return result;
+}
+
+// Sample Input and Output
+console.log(reverseString("hello"));
+// Output: "olleh"
+
+console.log(isPalindrome("madam"));
+// Output: true
+
+console.log(countVowelsAndConsonants("hello"));
+// Output: { vowels: 2, consonants: 3 }
+
+console.log(secondLargest([10, 5, 20, 8, 20]));
+// Output: 10
+
+console.log(removeDuplicates([1, 2, 2, 3, 1]));
+// Output: [1, 2, 3]
+
+console.log(sumEvenNumbers([1, 2, 3, 4, 6]));
+// Output: 12
+
+console.log(frequency([1, 2, 2, 3, 2], 2));
+// Output: 3
+
+console.log(areAnagrams("listen", "silent"));
+// Output: true
+
+console.log(moveZeros([0, 1, 0, 3, 12]));
+// Output: [1, 3, 12, 0, 0]
