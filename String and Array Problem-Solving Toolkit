@@ -1,4 +1,13 @@
-// Reverse a String Without Using reverse()
+// Question 1: Reverse a String
+
+
+// Explanation:
+// String ko reverse karne ke liye hum last character se loop start karte hain.
+// Har character ko ek new string mein add karte hain.
+// Is solution mein reverse() method use nahi kiya gaya.
+
+// Time Complexity: O(n)
+
 function reverseString(str) {
     let reversed = "";
 
@@ -9,19 +18,58 @@ function reverseString(str) {
     return reversed;
 }
 
-// Check Whether a String Is a Palindrome
+console.log("Q1: Reverse a String");
+console.log(reverseString("hello"));
+// Output: olleh
+
+
+
+// Question 2: Check Palindrome
+
+
+// Explanation:
+// Palindrome woh word hota hai jo forward aur backward same hota hai.
+// Hum string ko reverse karke original string se compare karte hain.
+// Agar dono same hain, toh true return hota hai.
+
+// Time Complexity: O(n)
+
 function isPalindrome(str) {
-    let reversed = reverseString(str);
+    let reversed = "";
+
+    for (let i = str.length - 1; i >= 0; i--) {
+        reversed += str[i];
+    }
+
     return str === reversed;
 }
 
-// Count Vowels and Consonants
+console.log("\nQ2: Check Palindrome");
+console.log(isPalindrome("madam"));
+// Output: true
+
+console.log(isPalindrome("hello"));
+// Output: false
+
+
+
+// Question 3: Count Vowels and Consonants
+
+
+// Explanation:
+// English vowels a, e, i, o, u hote hain.
+// Hum har character check karke vowels aur consonants count karte hain.
+// Spaces, numbers aur special characters ignore kiye jate hain.
+
+// Time Complexity: O(n)
+
 function countVowelsAndConsonants(str) {
     let vowels = 0;
     let consonants = 0;
-    let text = str.toLowerCase();
 
-    for (let char of text) {
+    str = str.toLowerCase();
+
+    for (let char of str) {
         if (char >= "a" && char <= "z") {
             if ("aeiou".includes(char)) {
                 vowels++;
@@ -31,10 +79,27 @@ function countVowelsAndConsonants(str) {
         }
     }
 
-    return { vowels, consonants };
+    return {
+        vowels: vowels,
+        consonants: consonants
+    };
 }
 
-// Find the Second-Largest Distinct Number
+console.log("\nQ3: Count Vowels and Consonants");
+console.log(countVowelsAndConsonants("hello"));
+// Output: { vowels: 2, consonants: 3 }
+
+
+
+// Question 4: Find Second-Largest Distinct Number
+
+// Explanation:
+// Hum largest aur second-largest distinct number ko track karte hain.
+// Array ko ek baar traverse karke dono values update karte hain.
+// Agar second-largest distinct number available nahi hai, toh null return hota hai.
+
+// Time Complexity: O(n)
+
 function secondLargest(arr) {
     let largest = -Infinity;
     let second = -Infinity;
@@ -48,10 +113,29 @@ function secondLargest(arr) {
         }
     }
 
-    return second === -Infinity ? null : second;
+    if (second === -Infinity) {
+        return null;
+    }
+
+    return second;
 }
 
-// Remove Duplicate Elements Without Using Set
+console.log("\nQ4: Second-Largest Distinct Number");
+console.log(secondLargest([10, 5, 20, 8, 20]));
+// Output: 10
+
+
+
+// Question 5: Remove Duplicate Elements
+
+
+// Explanation:
+// Hum ek empty array mein unique elements store karte hain.
+// includes() check karta hai ki element pehle se present hai ya nahi.
+// Set use kiye bina duplicate elements remove ho jate hain.
+
+// Time Complexity: O(n^2)
+
 function removeDuplicates(arr) {
     let result = [];
 
@@ -64,7 +148,22 @@ function removeDuplicates(arr) {
     return result;
 }
 
-// Find the Sum of All Even Numbers
+console.log("\nQ5: Remove Duplicates");
+console.log(removeDuplicates([1, 2, 2, 3, 1]));
+// Output: [1, 2, 3]
+
+
+
+// Question 6: Sum of Even Numbers
+
+
+// Explanation:
+// Even numbers woh hote hain jo 2 se completely divide hote hain.
+// Hum modulus operator (%) se even numbers check karte hain.
+// Har even number ko sum mein add kar dete hain.
+
+// Time Complexity: O(n)
+
 function sumEvenNumbers(arr) {
     let sum = 0;
 
@@ -77,7 +176,22 @@ function sumEvenNumbers(arr) {
     return sum;
 }
 
-// Find the Frequency of an Element
+console.log("\nQ6: Sum of Even Numbers");
+console.log(sumEvenNumbers([1, 2, 3, 4, 6]));
+//Output: 12
+
+
+
+// Question 7: Frequency of an Element
+
+
+// Explanation:
+// Frequency ka matlab hai ki koi element array mein kitni baar aaya hai.
+// Hum har element ko given element ke saath compare karte hain.
+// Match milne par count increase kar dete hain.
+
+// Time Complexity: O(n)
+
 function frequency(arr, element) {
     let count = 0;
 
@@ -90,7 +204,23 @@ function frequency(arr, element) {
     return count;
 }
 
-// Check Whether Two Strings Are Anagrams
+console.log("\nQ7: Frequency of an Element");
+console.log(frequency([1, 2, 2, 3, 2], 2));
+ Output: 3
+
+
+
+// Question 8: Check Anagrams
+
+
+// Explanation:
+// Anagrams mein dono strings ke characters same hote hain,
+// lekin unka order different ho sakta hai.
+// Hum strings ko lowercase karke spaces remove aur characters sort karte hain.
+// Sorted strings same hone par function true return karta hai.
+
+// Time Complexity: O(n log n)
+
 function areAnagrams(str1, str2) {
     let text1 = str1.toLowerCase().replace(/\s/g, "");
     let text2 = str2.toLowerCase().replace(/\s/g, "");
@@ -105,7 +235,25 @@ function areAnagrams(str1, str2) {
     return sorted1 === sorted2;
 }
 
-// Move All Zeros to the End
+console.log("\nQ8: Check Anagrams");
+console.log(areAnagrams("listen", "silent"));
+// Output: true
+
+console.log(areAnagrams("hello", "world"));
+ Output: false
+
+ 
+// Question 9: Move All Zeros to the End
+
+
+// Explanation:
+// Hum pehle array ke saare non-zero elements ko result mein add karte hain.
+// Saath hi zeros ki count maintain karte hain.
+// Finally, counted zeros ko array ke end mein add kar dete hain.
+// Isse non-zero elements ka original order maintain rehta hai.
+
+// Time Complexity: O(n)
+
 function moveZeros(arr) {
     let result = [];
     let zeroCount = 0;
@@ -126,30 +274,8 @@ function moveZeros(arr) {
     return result;
 }
 
-// Sample Input and Output
-console.log(reverseString("hello"));
-// Output: "olleh"
-
-console.log(isPalindrome("madam"));
-// Output: true
-
-console.log(countVowelsAndConsonants("hello"));
-// Output: { vowels: 2, consonants: 3 }
-
-console.log(secondLargest([10, 5, 20, 8, 20]));
-// Output: 10
-
-console.log(removeDuplicates([1, 2, 2, 3, 1]));
-// Output: [1, 2, 3]
-
-console.log(sumEvenNumbers([1, 2, 3, 4, 6]));
-// Output: 12
-
-console.log(frequency([1, 2, 2, 3, 2], 2));
-// Output: 3
-
-console.log(areAnagrams("listen", "silent"));
-// Output: true
-
+console.log("\nQ9: Move All Zeros to the End");
 console.log(moveZeros([0, 1, 0, 3, 12]));
-// Output: [1, 3, 12, 0, 0]
+Output: [1, 3, 12, 0, 0]
+
+
